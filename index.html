@@ -157,7 +157,7 @@
         function getEmojiIcon(phenomenon) {
             const type = phenomenon.name.toLowerCase();
             let emoji = "❔";
-            if (type.includes("тильзит") || type.includes("сыр")) emoji = "🧀";            // сыр
+            if (type.includes("советск") || type.includes("сыр")) emoji = "🧀";            // сыр
             else if (type.includes("гамбургер")) emoji = "🍔";                               // гамбургер
             else if (type.includes("болоньезе")) emoji = "🍝";                               // болоньезе
             else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";          // мокка/кофе
@@ -174,7 +174,8 @@
             else if (type.includes("бордовый")) emoji = "🟥";                                // бордовый цвет (красный квадрат)
             else if (type.includes("оксфорды") || type.includes("ботинки")) emoji = "👞";    // оксфорды (ботинки)
             else if (type.includes("деним") || type.includes("джинсы")) emoji = "👖";        // деним (джинсы)
-            else if (type.includes("пергамент") || type.includes("пергам")) emoji = "📜";        // деним (джинсы)
+            else if (type.includes("пергамент") || type.includes("пергам")) emoji = "📜";        // пергам (пергамент)
+            else if (type.includes("мока") || type.includes("моха")) emoji = "☕"; 
             return L.divIcon({
                 html: `<span style="font-size:32px;">${emoji}</span>`,
                 iconSize: [36, 36],
