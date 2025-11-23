@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Явления, названные в честь городов</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
     <style>
@@ -14,6 +14,7 @@
             --color-text: #1a1a1a;
             --color-text-secondary: #666666;
             --color-border: #e0e0e0;
+            --color-success: #208080;
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
@@ -21,72 +22,107 @@
         html, body {
             margin: 0; padding: 0; height: 100%;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--color-bg); color: var(--color-text);
+            background-color: var(--color-bg);
+            color: var(--color-text);
         }
         body { display: flex; flex-direction: column; }
         .header {
             background-color: var(--color-surface);
             border-bottom: 1px solid var(--color-border);
-            padding: 16px 20px; box-shadow: var(--shadow-sm); z-index: 100;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-sm);
+            z-index: 100;
         }
-        .header h1 { margin: 0; font-size: 24px; font-weight: 600; color: var(--color-text);}
-        .header p { margin: 4px 0 0 0; font-size: 14px; color: var(--color-text-secondary);}
-        .map-container { flex: 1; position: relative; background-color: #e0e0e0;}
-        #map { width: 100%; height: 100%;}
+        .header h1 { margin: 0; font-size: 24px; font-weight: 600; color: var(--color-text); }
+        .header p { margin: 4px 0 0 0; font-size: 14px; color: var(--color-text-secondary); }
+        .map-container { flex: 1; position: relative; background-color: #e0e0e0; }
+        #map { width: 100%; height: 100%; }
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.5); overflow-y: auto;
         }
-        .modal.active { display: flex; align-items: center; justify-content: center;}
+        .modal.active { display: flex; align-items: center; justify-content: center; }
         .modal-content {
             background-color: var(--color-surface); border-radius: 12px;
             padding: 32px; max-width: 600px; width: 90%; max-height: 85vh; overflow-y: auto;
             box-shadow: var(--shadow-md);
         }
-        .modal-header { display: flex; justify-content: space-between; align-items: flex-start;
-            margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;}
-        .modal-header h2 { margin: 0; font-size: 28px; color: var(--color-text); flex: 1;}
-        .modal-header .close-btn {
-            background: none; border: none; font-size: 28px; cursor: pointer; color: var(--color-text-secondary);
-            padding: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            border-radius: 6px;
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;
         }
-        .modal-header .close-btn:hover { background-color: var(--color-bg); color: var(--color-text);}
-        .modal-body { color: var(--color-text); line-height: 1.6;}
-        .modal-body h3 { margin-top: 20px; margin-bottom: 10px; font-size: 18px; color: var(--color-primary);
-            border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;}
-        .modal-body h3:first-child { margin-top: 0;}
-        .modal-body p { margin: 0 0 12px 0; font-size: 15px; color: var(--color-text);}
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
-            padding: 16px; background-color: var(--color-bg); border-radius: 8px;}
-        .info-grid-item { display: flex; flex-direction: column;}
-        .info-grid-item label { font-size: 12px; color: var(--color-text-secondary);
-            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600;}
-        .info-grid-item value { font-size: 16px; font-weight: 500; color: var(--color-text);}
-        .sources { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border);}
-        .sources h4 { margin: 0 0 12px 0; font-size: 14px; color: var(--color-text-secondary); text-transform: uppercase;
-            letter-spacing: 0.5px; font-weight: 600;}
-        .sources ul { margin: 0; padding-left: 20px;}
-        .sources li { margin-bottom: 8px; font-size: 14px;}
-        .sources a { color: var(--color-primary); text-decoration: none;}
-        .sources a:hover { text-decoration: underline;}
-        .loading { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 16px; color: var(--color-text-secondary);}
-        .error { background-color: #fee; border: 1px solid #fcc; color: #c33; padding: 16px; border-radius: 8px; margin: 16px;}
+        .modal-header h2 {
+            margin: 0; font-size: 28px; color: var(--color-text); flex: 1;
+        }
+        .modal-header .close-btn {
+            background: none; border: none; font-size: 28px; cursor: pointer;
+            color: var(--color-text-secondary); padding: 0; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center; border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .modal-header .close-btn:hover {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+        .modal-body { color: var(--color-text); line-height: 1.6; }
+        .modal-body h3 {
+            margin-top: 20px; margin-bottom: 10px; font-size: 18px; color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;
+        }
+        .modal-body h3:first-child { margin-top: 0; }
+        .modal-body p { margin: 0 0 12px 0; font-size: 15px; color: var(--color-text); }
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
+            padding: 16px; background-color: var(--color-bg); border-radius: 8px;
+        }
+        .info-grid-item { display: flex; flex-direction: column; }
+        .info-grid-item label {
+            font-size: 12px; color: var(--color-text-secondary);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600;
+        }
+        .info-grid-item value { font-size: 16px; font-weight: 500; color: var(--color-text); }
+        .sources {
+            margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border);
+        }
+        .sources h4 {
+            margin: 0 0 12px 0; font-size: 14px; color: var(--color-text-secondary);
+            text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+        }
+        .sources ul {
+            margin: 0; padding-left: 20px;
+        }
+        .sources li { margin-bottom: 8px; font-size: 14px; }
+        .sources a {
+            color: var(--color-primary); text-decoration: none;
+        }
+        .sources a:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            display: flex; align-items: center; justify-content: center;
+            height: 100%; font-size: 16px; color: var(--color-text-secondary);
+        }
+        .error {
+            background-color: #fee; border: 1px solid #fcc; color: #c33;
+            padding: 16px; border-radius: 8px; margin: 16px;
+        }
         @media (max-width: 768px) {
             .header { padding: 12px 16px; }
             .header h1 { font-size: 20px; }
             .header p { font-size: 12px; }
-            .modal-content { padding: 24px; width: 95%; max-height: 90vh;}
-            .modal-header { margin-bottom: 16px; padding-bottom: 12px;}
-            .modal-header h2 { font-size: 24px;}
-            .info-grid { grid-template-columns: 1fr; gap: 12px; padding: 12px; margin: 12px 0;}
-            .modal-body h3 { font-size: 16px; margin-top: 16px; margin-bottom: 8px;}
+            .modal-content { padding: 24px; width: 95%; max-height: 90vh; }
+            .modal-header { margin-bottom: 16px; padding-bottom: 12px; }
+            .modal-header h2 { font-size: 24px; }
+            .info-grid {
+                grid-template-columns: 1fr; gap: 12px; padding: 12px; margin: 12px 0;
+            }
+            .modal-body h3 { font-size: 16px; margin-top: 16px; margin-bottom: 8px; }
         }
         @media (max-width: 480px) {
-            .header h1 { font-size: 18px;}
-            .modal-content { padding: 16px; width: 98%;}
-            .modal-header h2 { font-size: 20px;}
-            .modal-body { font-size: 14px;}
+            .header h1 { font-size: 18px; }
+            .modal-content { padding: 16px; width: 98%; }
+            .modal-header h2 { font-size: 20px; }
+            .modal-body { font-size: 14px; }
         }
     </style>
 </head>
@@ -118,33 +154,32 @@
         };
 
         // Функция создания эмодзи-маркера
-       function getEmojiIcon(phenomenon) {
-    const type = phenomenon.name.toLowerCase();
-    let emoji = "❔";
-    if (type.includes("тильзиттер") || type.includes("сыр")) emoji = "🧀";            // сыр
-    else if (type.includes("гамбургер")) emoji = "🍔";                               // гамбургер
-    else if (type.includes("болоньезе")) emoji = "🍝";                               // болоньезе
-    else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";          // мокка/кофе
-    else if (type.includes("портвейн") || type.includes("херес") || type.includes("шерри")) emoji = "🥂"; // портвейн/херес
-    else if (type.includes("библия")) emoji = "📖";                                  // библия
-    else if (type.includes("спа")) emoji = "🛁";                                     // SPA (ванна)
-    else if (type.includes("одеколон")) emoji = "🧴";                                // одеколон (бутылка)
-    else if (type.includes("шираз") || type.includes("вино")) emoji = "🍷";          // шираз/вино
-    else if (type.includes("балаклава")) emoji = "🥷";                               // балаклава
-    else if (type.includes("танжерин") || type.includes("апельсин")) emoji = "🍊";   // танжерин
-    else if (type.includes("берлинер")) emoji = "🍩";                                // берлинер
-    else if (type.includes("вена") || type.includes("wiener")) emoji = "🌭";         // венская сосиска
-    else if (type.includes("пилснер") || type.includes("пльзень")) emoji = "🍺";     // пилснер (пиво)
-    else if (type.includes("бордовый")) emoji = "🟥";                                // бордовый цвет (красный квадрат)
-    else if (type.includes("оксфорды") || type.includes("ботинки")) emoji = "👞";    // оксфорды (ботинки)
-    else if (type.includes("деним") || type.includes("джинсы")) emoji = "👖";        // деним (джинсы)
-    return L.divIcon({
-        html: `<span style="font-size:32px;">${emoji}</span>`,
-        iconSize: [36, 36],
-        className: ''
-    });
-}
-
+        function getEmojiIcon(phenomenon) {
+            const type = phenomenon.name.toLowerCase();
+            let emoji = "❔";
+            if (type.includes("тильзиттер") || type.includes("сыр")) emoji = "🧀";            // сыр
+            else if (type.includes("гамбургер")) emoji = "🍔";                               // гамбургер
+            else if (type.includes("болоньезе")) emoji = "🍝";                               // болоньезе
+            else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";          // мокка/кофе
+            else if (type.includes("портвейн") || type.includes("херес") || type.includes("шерри")) emoji = "🥂"; // портвейн/херес
+            else if (type.includes("библия")) emoji = "📖";                                  // библия
+            else if (type.includes("спа")) emoji = "🛁";                                     // SPA (ванна)
+            else if (type.includes("одеколон")) emoji = "🧴";                                // одеколон (бутылка)
+            else if (type.includes("шираз") || type.includes("вино")) emoji = "🍷";          // шираз/вино
+            else if (type.includes("балаклава")) emoji = "🥷";                               // балаклава
+            else if (type.includes("танжерин") || type.includes("апельсин")) emoji = "🍊";   // танжерин
+            else if (type.includes("берлинер")) emoji = "🍩";                                // берлинер
+            else if (type.includes("вена") || type.includes("wiener")) emoji = "🌭";         // венская сосиска
+            else if (type.includes("пилснер") || type.includes("пльзень")) emoji = "🍺";     // пилснер (пиво)
+            else if (type.includes("бордовый")) emoji = "🟥";                                // бордовый цвет (красный квадрат)
+            else if (type.includes("оксфорды") || type.includes("ботинки")) emoji = "👞";    // оксфорды (ботинки)
+            else if (type.includes("деним") || type.includes("джинсы")) emoji = "👖";        // деним (джинсы)
+            return L.divIcon({
+                html: `<span style="font-size:32px;">${emoji}</span>`,
+                iconSize: [36, 36],
+                className: ''
+            });
+        }
 
         async function loadPhenomena() {
             try {
