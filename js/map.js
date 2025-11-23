@@ -24,5 +24,5 @@ phenomena.forEach(function(ph) {
     .addTo(map)
     .on('click', function() {
       showModal(ph); // функция открытия модального окна из modal.js
-    });
+    }); // только click!
 });
