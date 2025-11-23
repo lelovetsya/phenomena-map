@@ -29,8 +29,9 @@ function initMap() {
   // Ограничиваем область карты по явлениям + чуть отступаем (паддинг)
   if (appState.phenomena.length > 0) {
     const bounds = L.latLngBounds(appState.phenomena.map(ph => [ph.latitude, ph.longitude]));
-    appState.map.fitBounds(bounds, { padding: [32, 32] }); // чуть больше паддинг, чтобы маркеры не прилипали к краю
-    appState.map.setMaxBounds(bounds);
+    appState.map.fitBounds(bounds, { padding: [32, 32] });
+    const expandedBounds = bounds.pad(0.1); // расширяем границы на 10%
+    appState.map.setMaxBounds(expandedBounds);
   }
 }
 
