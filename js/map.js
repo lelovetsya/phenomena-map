@@ -1,7 +1,7 @@
 function getEmojiIcon(phenomenon) {
   const type = phenomenon.name.toLowerCase();
   let emoji = "❔";
-  if (type.includes("тильзиттер") || type.includes("сыр")) emoji = "🧀";
+  if (type.includes("Советск") || type.includes("сыр")) emoji = "🧀";
   else if (type.includes("гамбургер")) emoji = "🍔";
   else if (type.includes("болоньезе")) emoji = "🍝";
   else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";

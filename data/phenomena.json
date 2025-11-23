@@ -28,7 +28,16 @@
     "longitude": 35.6523,
     "emoji": "📖",
     "description": "...",
-    "sources": [...]
+    "sources": [
+      {
+        "title": "Википедия: Библ",
+        "url": "https://ru.wikipedia.org/wiki/Библ"
+      },
+      {
+        "title": "Википедия: Библия",
+        "url": "https://ru.wikipedia.org/wiki/Библия"
+      }
+    ]
   },
   {
     "id": 3,
@@ -39,7 +48,7 @@
     "longitude": 6.95,
     "emoji": "🧴",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 4,
@@ -50,7 +59,7 @@
     "longitude": 27.1805,
     "emoji": "📜",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 5,
@@ -61,7 +70,7 @@
     "longitude": -6.1117,
     "emoji": "🥂",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 6,
@@ -72,7 +81,7 @@
     "longitude": 33.6000,
     "emoji": "🥷",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 7,
@@ -83,7 +92,7 @@
     "longitude": 11.3427,
     "emoji": "🍝",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 8,
@@ -94,7 +103,7 @@
     "longitude": 52.5311,
     "emoji": "🍷",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 9,
@@ -105,7 +114,7 @@
     "longitude": 9.9937,
     "emoji": "🍔",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 10,
@@ -116,7 +125,7 @@
     "longitude": 5.8584,
     "emoji": "🛁",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 11,
@@ -127,7 +136,7 @@
     "longitude": 116.4074,
     "emoji": "🐶",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 12,
@@ -138,7 +147,7 @@
     "longitude": -8.6291,
     "emoji": "🍷",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 13,
@@ -149,7 +158,7 @@
     "longitude": 43.2547,
     "emoji": "☕",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 14,
@@ -160,7 +169,7 @@
     "longitude": 13.3775,
     "emoji": "🍺",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 15,
@@ -171,7 +180,7 @@
     "longitude": -0.5792,
     "emoji": "🟥",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 16,
@@ -182,7 +191,7 @@
     "longitude": -1.2577,
     "emoji": "👞",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 17,
@@ -193,7 +202,7 @@
     "longitude": 4.3601,
     "emoji": "👖",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 18,
@@ -204,7 +213,7 @@
     "longitude": 13.4050,
     "emoji": "🍩",
     "description": "...",
-    "sources": [...]
+    "sources": []
   },
   {
     "id": 19,
@@ -215,6 +224,6 @@
     "longitude": 16.3738,
     "emoji": "🌭",
     "description": "...",
-    "sources": [...]
+    "sources": []
   }
 ]

@@ -145,129 +145,110 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        const appState = {
-            map: null,
-            markers: [],
-            phenomena: [],
-            currentPhenomenon: null
-        };
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  const appState = {
+    map: null,
+    markers: [],
+    phenomena: [],
+    currentPhenomenon: null
+  };
 
-        // Функция создания эмодзи-маркера
-        function getEmojiIcon(phenomenon) {
-    const type = phenomenon.name.toLowerCase();
-    let emoji = "❔";
-    if (type.includes("Советск")) || type.includes("Тильзит") emoji = "🧀";                                      // тильзит (сыр)
-    else if (type.includes("гамбургер")) emoji = "🍔";                               // гамбургер
-    else if (type.includes("болоньезе")) emoji = "🍝";                               // болоньезе
-    else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";          // мокка/кофе
-    else if (type.includes("портвейн") || type.includes("херес") || type.includes("шерри")) emoji = "🥂"; // портвейн/херес
-    else if (type.includes("библия")) emoji = "📖";                                  // библия
-    else if (type.includes("спа")) emoji = "🛁";                                     // SPA (ванна)
-    else if (type.includes("одеколон")) emoji = "🧴";                                // одеколон (бутылка)
-    else if (type.includes("шираз") || type.includes("вино")) emoji = "🍷";          // шираз/вино
-    else if (type.includes("балаклава")) emoji = "🥷";                               // балаклава
-    else if (type.includes("танжерин") || type.includes("апельсин")) emoji = "🍊";   // танжерин
-    else if (type.includes("берлинер")) emoji = "🍩";                                // берлинер
-    else if (type.includes("вена") || type.includes("wiener")) emoji = "🌭";         // венская сосиска
-    else if (type.includes("пилснер") || type.includes("пльзень")) emoji = "🍺";     // пилснер (пиво)
-    else if (type.includes("бордовый")) emoji = "🟥";                                // бордовый цвет (красный квадрат)
-    else if (type.includes("оксфорды") || type.includes("ботинки")) emoji = "👞";    // оксфорды (ботинки)
-    else if (type.includes("деним") || type.includes("джинсы")) emoji = "👖";        // деним (джинсы)
-    else if (type.includes("пергамент") || type.includes("пергам")) emoji = "📜";    // пергамент
-    else if (type.includes("моха") || type.includes("йемен")) emoji = "☕";          // моха (порт)
-    else if (type.includes("пекинес")) emoji = "🐶";
+  // Новый вариант функции — берёт эмодзи из файла
+  function getEmojiIcon(phenomenon) {
+    const emoji = phenomenon.emoji || "❔";
     return L.divIcon({
-        html: `<span style="font-size:32px;">${emoji}</span>`,
-        iconSize: [36, 36],
-        className: ''
+      html: `<span style="font-size:32px;">${emoji}</span>`,
+      iconSize: [36, 36],
+      className: ''
     });
-}
+  }
 
-        async function loadPhenomena() {
-            try {
-                const response = await fetch('data/phenomena.json');
-                if (!response.ok) throw new Error('Не удалось загрузить данные');
-                appState.phenomena = await response.json();
-            } catch (error) {
-                console.error('Ошибка загрузки:', error);
-                document.querySelector('.map-container').innerHTML = `<div class="loading error">Ошибка: ${error.message}</div>`;
-            }
-        }
+  async function loadPhenomena() {
+    try {
+      const response = await fetch('data/phenomena.json');
+      if (!response.ok) throw new Error('Не удалось загрузить данные');
+      appState.phenomena = await response.json();
+    } catch (error) {
+      console.error('Ошибка загрузки:', error);
+      document.querySelector('.map-container').innerHTML = `<div class="loading error">Ошибка: ${error.message}</div>`;
+    }
+  }
 
-        function initMap() {
-            appState.map = L.map('map').setView([20, 0], 2);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
-                maxZoom: 19
-            }).addTo(appState.map);
+  function initMap() {
+    appState.map = L.map('map').setView([20, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(appState.map);
 
-            appState.phenomena.forEach(phenomenon => {
-                const marker = L.marker([phenomenon.latitude, phenomenon.longitude], {
-                    icon: getEmojiIcon(phenomenon)
-                }).addTo(appState.map);
+    appState.phenomena.forEach(phenomenon => {
+      const marker = L.marker([phenomenon.latitude, phenomenon.longitude], {
+        icon: getEmojiIcon(phenomenon)
+      }).addTo(appState.map);
 
-                marker.on('click', () => openModal(phenomenon));
-                appState.markers.push(marker);
-            });
-        }
+      marker.on('click', () => openModal(phenomenon));
+      appState.markers.push(marker);
+    });
+  }
 
-        function openModal(phenomenon) {
-            appState.currentPhenomenon = phenomenon;
-            document.getElementById('modalTitle').textContent = phenomenon.name;
-            const htmlContent = marked.parse(phenomenon.description);
-            let modalHTML = `<div class="modal-body">`;
-            modalHTML += `
-                <div class="info-grid">
-                    <div class="info-grid-item">
-                        <label>Город</label>
-                        <value>${phenomenon.city}</value>
-                    </div>
-                    <div class="info-grid-item">
-                        <label>Страна</label>
-                        <value>${phenomenon.country}</value>
-                    </div>
-                </div>
-            `;
-            modalHTML += `<div>${htmlContent}</div>`;
-            if (phenomenon.sources && phenomenon.sources.length > 0) {
-                modalHTML += `
-                    <div class="sources">
-                        <h4>Источники</h4>
-                        <ul>
-                            ${phenomenon.sources.map(source => `
-                                <li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.title}</a></li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                `;
-            }
-            modalHTML += `</div>`;
-            document.getElementById('modalBody').innerHTML = modalHTML;
-            document.getElementById('phenomenonModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+  function openModal(phenomenon) {
+    appState.currentPhenomenon = phenomenon;
+    document.getElementById('modalTitle').textContent = phenomenon.name;
+    const htmlContent = marked.parse(phenomenon.description);
+    let modalHTML = `<div class="modal-body">`;
+    modalHTML += `
+      <div class="info-grid">
+        <div class="info-grid-item">
+          <label>Город</label>
+          <value>${phenomenon.city}</value>
+        </div>
+        <div class="info-grid-item">
+          <label>Страна</label>
+          <value>${phenomenon.country}</value>
+        </div>
+      </div>
+    `;
+    modalHTML += `<div>${htmlContent}</div>`;
+    if (phenomenon.sources && phenomenon.sources.length > 0) {
+      modalHTML += `
+        <div class="sources">
+          <h4>Источники</h4>
+          <ul>
+            ${phenomenon.sources.map(source => `
+              <li><a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.title}</a></li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+    }
+    modalHTML += `</div>`;
+    document.getElementById('modalBody').innerHTML = modalHTML;
+    document.getElementById('phenomenonModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-        function closeModal() {
-            document.getElementById('phenomenonModal').classList.remove('active');
-            document.body.style.overflow = '';
-            appState.currentPhenomenon = null;
-        }
+  function closeModal() {
+    document.getElementById('phenomenonModal').classList.remove('active');
+    document.body.style.overflow = '';
+    appState.currentPhenomenon = null;
+  }
 
-        document.getElementById('phenomenonModal').addEventListener('click', function(event) {
-            if (event.target === this) closeModal();
-        });
+  document.getElementById('phenomenonModal').addEventListener('click', function(event) {
+    if (event.target === this) closeModal();
+  });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') closeModal();
-        });
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') closeModal();
+  });
 
-        async function initApp() {
-            await loadPhenomena();
-            if (appState.phenomena.length > 0) initMap();
-        }
+  async function initApp() {
+    await loadPhenomena();
+    if (appState.phenomena.length > 0) initMap();
+  }
 
-        document.addEventListener('DOMContentLoaded', initApp);
-    </script>
+  document.addEventListener('DOMContentLoaded', initApp);
+</script>
 </body>
 </html>
