@@ -155,33 +155,33 @@
 
         // Функция создания эмодзи-маркера
         function getEmojiIcon(phenomenon) {
-            const type = phenomenon.name.toLowerCase();
-            let emoji = "❔";
-            if (type.includes("советск") || type.includes("сыр")) emoji = "🧀";            // сыр
-            else if (type.includes("гамбургер")) emoji = "🍔";                               // гамбургер
-            else if (type.includes("болоньезе")) emoji = "🍝";                               // болоньезе
-            else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";          // мокка/кофе
-            else if (type.includes("портвейн") || type.includes("херес") || type.includes("шерри")) emoji = "🥂"; // портвейн/херес
-            else if (type.includes("библия")) emoji = "📖";                                  // библия
-            else if (type.includes("спа")) emoji = "🛁";                                     // SPA (ванна)
-            else if (type.includes("одеколон")) emoji = "🧴";                                // одеколон (бутылка)
-            else if (type.includes("шираз") || type.includes("вино")) emoji = "🍷";          // шираз/вино
-            else if (type.includes("балаклава")) emoji = "🥷";                               // балаклава
-            else if (type.includes("танжерин") || type.includes("апельсин")) emoji = "🍊";   // танжерин
-            else if (type.includes("берлинер")) emoji = "🍩";                                // берлинер
-            else if (type.includes("вена") || type.includes("wiener")) emoji = "🌭";         // венская сосиска
-            else if (type.includes("пилснер") || type.includes("пльзень")) emoji = "🍺";     // пилснер (пиво)
-            else if (type.includes("бордовый")) emoji = "🟥";                                // бордовый цвет (красный квадрат)
-            else if (type.includes("оксфорды") || type.includes("ботинки")) emoji = "👞";    // оксфорды (ботинки)
-            else if (type.includes("деним") || type.includes("джинсы")) emoji = "👖";        // деним (джинсы)
-            else if (type.includes("пергамент") || type.includes("пергам")) emoji = "📜";        // пергам (пергамент)
-            else if (type.includes("моха") || type.includes("Йемен")) emoji = "☕"; 
-            return L.divIcon({
-                html: `<span style="font-size:32px;">${emoji}</span>`,
-                iconSize: [36, 36],
-                className: ''
-            });
-        }
+    const type = phenomenon.name.toLowerCase();
+    let emoji = "❔";
+    if (type.includes("тильзит")) emoji = "🧀";                                      // тильзит (сыр)
+    else if (type.includes("гамбургер")) emoji = "🍔";                               // гамбургер
+    else if (type.includes("болоньезе")) emoji = "🍝";                               // болоньезе
+    else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";          // мокка/кофе
+    else if (type.includes("портвейн") || type.includes("херес") || type.includes("шерри")) emoji = "🥂"; // портвейн/херес
+    else if (type.includes("библия")) emoji = "📖";                                  // библия
+    else if (type.includes("спа")) emoji = "🛁";                                     // SPA (ванна)
+    else if (type.includes("одеколон")) emoji = "🧴";                                // одеколон (бутылка)
+    else if (type.includes("шираз") || type.includes("вино")) emoji = "🍷";          // шираз/вино
+    else if (type.includes("балаклава")) emoji = "🥷";                               // балаклава
+    else if (type.includes("танжерин") || type.includes("апельсин")) emoji = "🍊";   // танжерин
+    else if (type.includes("берлинер")) emoji = "🍩";                                // берлинер
+    else if (type.includes("вена") || type.includes("wiener")) emoji = "🌭";         // венская сосиска
+    else if (type.includes("пилснер") || type.includes("пльзень")) emoji = "🍺";     // пилснер (пиво)
+    else if (type.includes("бордовый")) emoji = "🟥";                                // бордовый цвет (красный квадрат)
+    else if (type.includes("оксфорды") || type.includes("ботинки")) emoji = "👞";    // оксфорды (ботинки)
+    else if (type.includes("деним") || type.includes("джинсы")) emoji = "👖";        // деним (джинсы)
+    else if (type.includes("пергамент") || type.includes("пергам")) emoji = "📜";    // пергамент
+    else if (type.includes("моха") || type.includes("йемен")) emoji = "☕";          // моха (порт)
+    return L.divIcon({
+        html: `<span style="font-size:32px;">${emoji}</span>`,
+        iconSize: [36, 36],
+        className: ''
+    });
+}
 
         async function loadPhenomena() {
             try {
