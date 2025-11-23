@@ -26,3 +26,24 @@ phenomena.forEach(function(ph) {
       showModal(ph); // функция открытия модального окна из modal.js
     }); // только click!
 });
+
+function initMap() {
+  appState.map = L.map('map');
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 19
+  }).addTo(appState.map);
+
+  appState.phenomena.forEach(phenomenon => {
+    const marker = L.marker([phenomenon.latitude, phenomenon.longitude], {
+      icon: getEmojiIcon(phenomenon)
+    }).addTo(appState.map);
+    marker.on('click', () => openModal(phenomenon));
+    appState.markers.push(marker);
+  });
+
+  const bounds = L.latLngBounds(appState.phenomena.map(ph => [ph.latitude, ph.longitude]));
+  appState.map.fitBounds(bounds, { padding: [20, 20] });
+  appState.map.setMaxBounds(bounds);
+}
