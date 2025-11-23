@@ -1,16 +1,6 @@
+// Используем emoji из phenomena.json для маркера
 function getEmojiIcon(phenomenon) {
-  const type = phenomenon.name.toLowerCase();
-  let emoji = "❔";
-  if (type.includes("Советск") || type.includes("Тильзит")) emoji = "🧀";
-  else if (type.includes("гамбургер")) emoji = "🍔";
-  else if (type.includes("болоньезе")) emoji = "🍝";
-  else if (type.includes("мокка") || type.includes("кофе")) emoji = "☕";
-  else if (type.includes("портвейн") || type.includes("вино") || type.includes("шираз")) emoji = "🍷";
-  else if (type.includes("балаклава")) emoji = "🥷"; // или 👽/😈
-  else if (type.includes("танжерин") || type.includes("апельсин")) emoji = "🍊";
-  else if (type.includes("берлинер")) emoji = "🍩";
-  else if (type.includes("вена") || type.includes("wiener")) emoji = "🌭";
-  // ... остальные на ваше усмотрение
+  const emoji = phenomenon.emoji || "❔";
   return L.divIcon({
     html: `<span style="font-size:32px;">${emoji}</span>`,
     iconSize: [36, 36],
@@ -18,15 +8,7 @@ function getEmojiIcon(phenomenon) {
   });
 }
 
-// При инициализации маркеров:
-phenomena.forEach(function(ph) {
-  L.marker([ph.latitude, ph.longitude], { icon: getEmojiIcon(ph) })
-    .addTo(map)
-    .on('click', function() {
-      showModal(ph); // функция открытия модального окна из modal.js
-    }); // только click!
-});
-
+// Инициализация карты после загрузки данных
 function initMap() {
   appState.map = L.map('map');
 
@@ -35,6 +17,7 @@ function initMap() {
     maxZoom: 19
   }).addTo(appState.map);
 
+  // Добавляем маркеры
   appState.phenomena.forEach(phenomenon => {
     const marker = L.marker([phenomenon.latitude, phenomenon.longitude], {
       icon: getEmojiIcon(phenomenon)
@@ -43,7 +26,18 @@ function initMap() {
     appState.markers.push(marker);
   });
 
-  const bounds = L.latLngBounds(appState.phenomena.map(ph => [ph.latitude, ph.longitude]));
-  appState.map.fitBounds(bounds, { padding: [20, 20] });
-  appState.map.setMaxBounds(bounds);
+  // Ограничиваем область карты по явлениям + чуть отступаем (паддинг)
+  if (appState.phenomena.length > 0) {
+    const bounds = L.latLngBounds(appState.phenomena.map(ph => [ph.latitude, ph.longitude]));
+    appState.map.fitBounds(bounds, { padding: [32, 32] }); // чуть больше паддинг, чтобы маркеры не прилипали к краю
+    appState.map.setMaxBounds(bounds);
+  }
 }
+
+// Вызовите после загрузки phenomena
+async function initApp() {
+  await loadPhenomena(); // функция загрузки данных
+  initMap();
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
