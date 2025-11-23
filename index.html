@@ -472,12 +472,12 @@
                 marker.on('click', () => openModal(phenomenon));
 
                 // Всплывающая подсказка при наведении
-                marker.bindPopup(`
-                    <div class="popup-content">
-                        <strong>${phenomenon.name}</strong>
-                        <p>${phenomenon.city}, ${phenomenon.country}</p>
-                    </div>
-                `);
+                //marker.bindPopup(`
+                //    <div class="popup-content">
+                //        <strong>${phenomenon.name}</strong>
+                //        <p>${phenomenon.city}, ${phenomenon.country}</p>
+                //    </div>
+                //`);
 
                 appState.markers.push(marker);
             });
