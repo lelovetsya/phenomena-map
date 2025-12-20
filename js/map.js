@@ -1,12 +1,58 @@
-// Используем emoji из phenomena.json для маркера
 function getEmojiIcon(phenomenon) {
-  const emoji = phenomenon.emoji || "❔";
+  // 1) Если в json есть путь к svg-иконке — используем её
+  if (phenomenon.icon) {
+    return L.icon({
+      iconUrl: phenomenon.icon,   // например "img/faenza.svg"
+      iconSize: [40, 40],
+      iconAnchor: [20, 37]
+    });
+  }
+
+  // 2) Иначе — универсальный встроенный SVG-пин с эмодзи внутри
+  const svg = `
+    <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.35)" />
+        </filter>
+      </defs>
+      <path
+        d="M20 3
+           C12 3 6 9 6 17
+           C6 25 13.5 31.5 18.5 36.5
+           C19.1 37.1 19.5 37.5 20 37.5
+           C20.5 37.5 20.9 37.1 21.5 36.5
+           C26.5 31.5 34 25 34 17
+           C34 9 28 3 20 3 Z"
+        fill="#ffffff"
+        stroke="#208080"
+        stroke-width="2.5"
+        filter="url(#shadow)"
+      />
+      ircle cx="20" cy="17" r="8"
+        fill="#208080"
+        fill-opacity="0.12"
+        stroke="#208080"
+        stroke-width="1.5"
+      />
+      <text x="20" y="20.5"
+        text-anchor="middle"
+        font-size="13"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif"
+        fill="#208080">
+        ${(phenomenon.emoji || '•')}
+      </text>
+    </svg>
+  `;
+
   return L.divIcon({
-    html: `<span style="font-size:32px;">${emoji}</span>`,
-    iconSize: [36, 36],
-    className: ''
+    html: svg,
+    className: 'phenomenon-icon',
+    iconSize: [40, 40],
+    iconAnchor: [20, 37]
   });
 }
+
 
 // Инициализация карты после загрузки данных
 function initMap() {
