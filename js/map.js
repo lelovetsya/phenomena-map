@@ -29,7 +29,7 @@ function getEmojiIcon(phenomenon) {
         stroke-width="2.5"
         filter="url(#shadow)"
       />
-      ircle cx="20" cy="17" r="8"
+      <circle cx="20" cy="17" r="8"
         fill="#208080"
         fill-opacity="0.12"
         stroke="#208080"
