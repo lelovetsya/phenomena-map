@@ -278,7 +278,7 @@
     "latitude": 44.2850,
     "longitude": 11.8830,
     "emoji": "🏺",
-     "icon": "img/faenza.svg",
+    "icon": "img/faenza.svg",
     "description": "Фаянс — тонкая глазурованная керамика, название которой происходит от итальянского города Фаэнца, крупного центра производства расписной майолики со Средних веков.",
     "sources": [
       { "title": "Faience — Wikipedia", "url": "https://en.wikipedia.org/wiki/Faience" },
