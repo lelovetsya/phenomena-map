@@ -257,31 +257,31 @@
     ]
   },
   {
-  "id": 20,
-  "name": "Сланцы",
-  "city": "Сланцы",
-  "country": "Россия",
-  "latitude": 59.1294,
-  "longitude": 30.2946,
-  "emoji": "👡",
-  "description": "Сланцы — вид летней открытой обуви на подошве с резинкой через подъём стопы. Названы по городу Сланцы Ленинградской области, где в 1930-х годах наладили их массовое производство.",
-  "sources": [
-    { "title": "Сланцы — Википедия", "url": "https://ru.wikipedia.org/wiki/%D0%A1%D0%BB%D0%B0%D0%BD%D1%86%D1%8B" },
-    { "title": "Сланцы из Сланцев", "url": "https://www.slancy.ru/history/" }
-  ]
-},
-{
-  "id": 21,
-  "name": "Роман (жанр)",
-  "city": "Рим",
-  "country": "Италия",
-  "latitude": 41.9028,
-  "longitude": 12.4964,
-  "emoji": "📚",
-  "description": "Роман — литературный жанр, название которого происходит от латинского 'Romanus' — 'римский'. В средние века так называли повествования на романском ( народных) языках в отличие от церковных текстов на латыни.",
-  "sources": [
-    { "title": "Роман — Википедия", "url": "https://ru.wikipedia.org/wiki/%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD" },
-    { "title": "Этимология слова 'роман'", "url": "https://etymological.ru/%D1%80%D0%BE%D0%BC%D0%B0%D0%BD/" }
-  ]
-}
+    "id": 20,
+    "name": "Феска",
+    "city": "Фес",
+    "country": "Марокко",
+    "latitude": 34.0331,
+    "longitude": -5.0003,
+    "emoji": "🎩",
+    "description": "Феска — невысокий войлочный головной убор цилиндрической формы, обычно красного цвета с кисточкой. Своё название получил от марокканского города Фес, где производили краситель для окраски таких шляп.",
+    "sources": [
+      { "title": "Fez (hat) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Fez_(hat)" },
+      { "title": "History of the Fez", "url": "https://www.hatsandcaps.co.uk/pages/history-of-the-fez" }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Фаянс",
+    "city": "Фаэнца",
+    "country": "Италия",
+    "latitude": 44.2850,
+    "longitude": 11.8830,
+    "emoji": "🏺",
+    "description": "Фаянс — тонкая глазурованная керамика, название которой происходит от итальянского города Фаэнца, крупного центра производства расписной майолики со Средних веков.",
+    "sources": [
+      { "title": "Faience — Wikipedia", "url": "https://en.wikipedia.org/wiki/Faience" },
+      { "title": "Faience - etymology", "url": "https://www.etymonline.com/word/faience" }
+    ]
+  }
 ]
