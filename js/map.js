@@ -5,7 +5,7 @@ const appState = {
 };
 
 async function loadPhenomena() {
-  const response = await fetch('data.json');
+  const response = await fetch('data/phenomena.json');
   appState.phenomena = await response.json();
 }
 
