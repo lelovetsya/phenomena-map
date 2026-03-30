@@ -277,11 +277,25 @@
     "country": "Италия",
     "latitude": 44.2850,
     "longitude": 11.8830,
-    "icon": "img/faenza.svg",
+    "emoji": "🏺",
     "description": "Фаянс — тонкая глазурованная керамика, название которой происходит от итальянского города Фаэнца, крупного центра производства расписной майолики со Средних веков.",
     "sources": [
       { "title": "Faience — Wikipedia", "url": "https://en.wikipedia.org/wiki/Faience" },
       { "title": "Faience - etymology", "url": "https://www.etymonline.com/word/faience" }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Тюль (ткань)",
+    "city": "Тюль",
+    "country": "Франция",
+    "latitude": 45.2667,
+    "longitude": 1.7667,
+    "emoji": "🩰",
+    "description": "Тюль — лёгкая сетчатая ткань, названная по французскому городу Тюль (Tulle) в регионе Коррез. Город славился производством кружев и сетчатых тканей с XVIII века.",
+    "sources": [
+      { "title": "Tulle (fabric) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Tulle_(fabric)" },
+      { "title": "Тюль (город) — Википедия", "url": "https://ru.wikipedia.org/wiki/%D0%A2%D1%8E%D0%BB%D1%8C_(%D0%B3%D0%BE%D1%80%D0%BE%D0%B4)" }
     ]
   }
 ]
