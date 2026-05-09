@@ -58,6 +58,7 @@ function initMap() {
       icon: getEmojiIcon(phenomenon)
     }).addTo(appState.map);
     marker.on('click', () => openModal(phenomenon));
+    marker._phenomenonData = phenomenon;
     appState.markers.push(marker);
   });
 
@@ -66,6 +67,19 @@ function initMap() {
     appState.map.fitBounds(bounds, { padding: [32, 32] });
     appState.map.setMaxBounds(bounds.pad(0.1));
   }
+}
+
+function toggleCheese(show) {
+  appState.markers.forEach(marker => {
+    const ph = marker._phenomenonData;
+    if (ph.category === 'cheese') {
+      if (show) {
+        marker.addTo(appState.map);
+      } else {
+        marker.remove();
+      }
+    }
+  });
 }
 
 async function initApp() {

@@ -93,16 +93,10 @@
       margin: 0 0 12px 0; font-size: 14px; color: var(--color-text-secondary);
       text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
     }
-    .sources ul {
-      margin: 0; padding-left: 20px;
-    }
+    .sources ul { margin: 0; padding-left: 20px; }
     .sources li { margin-bottom: 8px; font-size: 14px; }
-    .sources a {
-      color: var(--color-primary); text-decoration: none;
-    }
-    .sources a:hover {
-      text-decoration: underline;
-    }
+    .sources a { color: var(--color-primary); text-decoration: none; }
+    .sources a:hover { text-decoration: underline; }
 
     .loading {
       display: flex; align-items: center; justify-content: center;
@@ -113,6 +107,32 @@
       padding: 16px; border-radius: 8px; margin: 16px;
     }
 
+    .map-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 500;
+      background: var(--color-surface);
+      padding: 10px 14px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      font-size: 14px;
+    }
+    .map-controls label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-text);
+      user-select: none;
+    }
+    .map-controls input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: var(--color-primary);
+    }
+
     @media (max-width: 768px) {
       .header { padding: 12px 16px; }
       .header h1 { font-size: 20px; }
@@ -120,9 +140,7 @@
       .modal-content { padding: 24px; width: 95%; max-height: 90vh; }
       .modal-header { margin-bottom: 16px; padding-bottom: 12px; }
       .modal-header h2 { font-size: 24px; }
-      .info-grid {
-        grid-template-columns: 1fr; gap: 12px; padding: 12px; margin: 12px 0;
-      }
+      .info-grid { grid-template-columns: 1fr; gap: 12px; padding: 12px; margin: 12px 0; }
       .modal-body h3 { font-size: 16px; margin-top: 16px; margin-bottom: 8px; }
     }
     @media (max-width: 480px) {
@@ -153,9 +171,15 @@
     </div>
   </div>
 
+  <div class="map-controls">
+    <label>
+      <input type="checkbox" id="cheeseToggle" checked onchange="toggleCheese(this.checked)">
+      🧀 Показывать сыры
+    </label>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Подключаем твой код вместо встроенного -->
   <script src="js/map.js"></script>
   <script src="js/modal.js"></script>
 </body>
