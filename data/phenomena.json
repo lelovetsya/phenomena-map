@@ -507,5 +507,34 @@
     "sources": [
       { "title": "Стилтон — Википедия", "url": "https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B8%D0%BB%D1%82%D0%BE%D0%BD" }
     ]
+  },
+  {
+    "id": 27,
+    "name": "Фазан",
+    "city": "Фасис (совр. Поти)",
+    "country": "Грузия",
+    "latitude": 42.1517,
+    "longitude": 41.6711,
+    "emoji": "🐦",
+    "description": "Фазан — птица, чьё название восходит к античному городу Фасис на берегу Чёрного моря (ныне Поти в Западной Грузии). Древние греки впервые встретили этих птиц на берегах реки Фасис (совр. Риони) и назвали их «phasianos ornis» — «птица реки Фасис». Через латынь и старофранцузский слово вошло в большинство европейских языков.",
+    "sources": [
+      { "title": "Pheasant — Wikipedia", "url": "https://en.wikipedia.org/wiki/Common_pheasant" },
+      { "title": "Phasis (town) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Phasis_(town)" },
+      { "title": "Pheasant — Etymonline", "url": "https://www.etymonline.com/word/pheasant" }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Лимерик (жанр)",
+    "city": "Лимерик",
+    "country": "Ирландия",
+    "latitude": 52.6638,
+    "longitude": -8.6267,
+    "emoji": "📝",
+    "description": "Лимерик — короткое юмористическое стихотворение из пяти строк с характерной схемой рифмовки AABBA. Название происходит от ирландского города Лимерик, хотя точный механизм связи остаётся предметом дискуссий. Предполагается, что жанр popularизировался через припев «Will you come up to Limerick?», который пели между импровизированными куплетами на ирландских застольях.",
+    "sources": [
+      { "title": "Limerick (poetry) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Limerick_(poetry)" },
+      { "title": "Лимерик — Википедия", "url": "https://ru.wikipedia.org/wiki/%D0%9B%D0%B8%D0%BC%D0%B5%D1%80%D0%B8%D0%BA_(%D0%BF%D0%BE%D1%8D%D0%B7%D0%B8%D1%8F)" }
+    ]
   }
 ]
